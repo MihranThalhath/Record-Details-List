@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="record_details_list_purchase.ListRenderer" t-inherit-mode="extension" t-inherit="purchase.PurchaseListView">
+        <xpath expr="//tr/th[hasclass('o_list_record_selector')]" position="after">
+            <t t-if="isX2Many == false &amp;&amp; checkMethodExists()">
+                <th class="expand_record_details opacity-trigger-hover">
+                    <span></span>
+                </th>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

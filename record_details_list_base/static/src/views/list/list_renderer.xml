@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="record_details_list_base.ListRenderer" t-inherit-mode="extension" t-inherit="web.ListRenderer">
+        <xpath expr="//tr/th[hasclass('o_list_record_selector')]" position="after">
+            <t t-if="isX2Many == false &amp;&amp; checkMethodExists()">
+                <th class="expand_record_details opacity-trigger-hover">
+                    <span></span>
+                </th>
+            </t>
+        </xpath>
+    </t>
+
+    <t id="record_details_list_base.RecordRow" t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension">
+        <xpath expr="//tr/td[hasclass('o_list_record_selector')]" position="after">
+            <t t-if="isX2Many == false &amp;&amp; checkMethodExists()">
+                <td class="expand_record_details o_data_cell cursor-pointer o_field_cell">
+                    <button class="btn btn-link btn-sm p-0 m-0"
+                        name="expand"
+                        aria-label="Expand Order Details"
+                        t-on-click.stop="() => this.expandRecordDetails(record)"
+                    >
+                        <i class="fa fa-angle-down"/>
+                    </button>
+                </td>
+            </t>
+        </xpath>
+        <xpath expr="//tr" position="after">
+            <tr>
+                <td colspan="100%">
+                    <t t-out="getRecordDetails(record)"/>
+                </td>
+            </tr>
+        </xpath>
+    </t>
+
+</templates>
